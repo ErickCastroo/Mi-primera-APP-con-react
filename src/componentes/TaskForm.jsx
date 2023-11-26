@@ -1,4 +1,5 @@
 import {useContext, useState} from 'react'
+import { Toaster, toast } from 'sonner'
 import {TaskContext} from '../context/TaskContext'
 
 function TaskForm() {
@@ -35,7 +36,9 @@ return  (
 
                 />
     
-                <button className='bg-indigo-500 px-3 rounded-sm py-1'>Guardar</button>
+                <Toaster />
+                <button  onClick={() => toast.success('Se agrego corectamente')} className='bg-indigo-500 px-3 rounded-sm py-1'>Guardar</button>
+                
             </form>
         </div>
         )
