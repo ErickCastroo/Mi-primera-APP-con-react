@@ -1,6 +1,7 @@
 import {useContext, useState} from 'react'
 import { Toaster, toast } from 'sonner'
 import {TaskContext} from '../context/TaskContext'
+import { task } from '../Data/tasks';
 
 function TaskForm() {
     const [titulo, setTitulo] = useState("");
@@ -11,12 +12,23 @@ function TaskForm() {
     const handleSubmit = (e) =>
     {
         e.preventDefault();
-        creatTask({
-            titulo,
-            descripcion
-        });
-        setTitulo ('');
-        setDescripcion ('');
+        if(titulo != "")
+        {
+            creatTask({
+                titulo,
+                descripcion
+            });
+            setTitulo ('');
+            setDescripcion ('');
+        }
+    }
+
+    const agregarToast = () =>
+    {
+        if(titulo != ""){
+            toast.success('Se agrego corectamente')
+        }
+
     }
 
 return  (
@@ -37,7 +49,7 @@ return  (
                 />
     
                 <Toaster />
-                <button  onClick={() => toast.success('Se agrego corectamente')} className='bg-indigo-500 px-3 rounded-sm py-1'>Guardar</button>
+                <button  onClick={agregarToast} className='bg-indigo-500 px-3 rounded-sm py-1'>Guardar</button>
                 
             </form>
         </div>
